@@ -10,6 +10,9 @@ import {ImAttachment} from "react-icons/im";
 import {MdSend} from "react-icons/md";
 import { useFileSystemPublicRoutes } from "../../../next.config";
 import PhotoPicker from "../common/PhotoPicker";
+import dynamic from "next/dynamic";
+
+const CaptureAudio = dynamic(()=>import("../common/CaptureAudio"), {ssr:false});
 
 
 
@@ -19,6 +22,7 @@ function MessageBar() {
   const [showEmojiPicker,setShowEmojiPicker] = useState(false);
   const emojiPickerRef = useRef(null);
   const [grabPhoto, setGrabPhoto] = useState(false);
+  const [showAudioRecorder, setShowAudioRecorder] = useState(false)
 
   const photoPickerChange = async (e)=>{
     
@@ -64,7 +68,7 @@ function MessageBar() {
         },1000)
       }
     }
-  },[grabPhoto])
+  },[grabPhoto])  
 
 
 
@@ -114,6 +118,8 @@ function MessageBar() {
   }
   return (
     <div className="bg-panel-header-background h-20 px-4 flex items-center gap-6 relative">
+      {
+        !showAudioRecorder && (
       <>
         <div className="flex gap-6">
           <BsEmojiSmile id="emoji-open" onClick={handleEmojiModal} className="text-panel-header-icon cursor-pointer text-xl" title="Emoji"/>
@@ -128,15 +134,25 @@ function MessageBar() {
           <input onChange={e=>setMessage(e.target.value)} value={message} type="text" placeholder="Type a message" className="bg-input-background text-sm focus:outline-none text-white h-10 rounded-lg px-5 py-4 w-full"/>
         </div>
         <div className="flex w-10 items-center justify-center">
+          
           <button>
-            <MdSend onClick={sendMessage} className="text-panel-header-icon cursor-pointer text-xl" title="Send Message"/>
+            {
+              message.length ?  
+              (
+                <MdSend onClick={sendMessage} className="text-panel-header-icon cursor-pointer text-xl" title="Send Message"/>
+                ) 
+                : 
+              (
+                <FaMicrophone onClick={()=>setShowAudioRecorder(true)} className="text-panel-header-icon cursor-pointer text-xl" title="Record"/>
+                )
+            }
           </button>
-          {/* <button>
-            <FaMicrophone className="text-panel-header-icon cursor-pointer text-xl" title="Record"/>
-          </button> */}
+        
         </div>
       </>
+      )}
       {grabPhoto && <PhotoPicker onChange={photoPickerChange} />}
+      {showAudioRecorder && <CaptureAudio hide={setShowAudioRecorder} />}
 
     </div>
   );

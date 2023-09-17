@@ -9,8 +9,9 @@ import { Server, Socket } from "socket.io"
 dotenv.config();
 const app = express();
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
+app.use("/uploads/recordings", express.static("uploads/recordings"));
 app.use("/uploads/images", express.static("uploads/images"));
 app.use('/api/auth', AuthRoutes);
 app.use('/api/messages', MessageRoutes);
