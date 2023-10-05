@@ -85,6 +85,14 @@ function MessageBar() {
       document.removeEventListener('click', handleOutsideClick);
     }
   },[])
+  
+  const handleKeyDown = event=>{
+    if (event.key === "Enter" && message.length>0){
+      sendMessage()
+    }
+  }
+
+
   const handleEmojiModal = ()=>{
     setShowEmojiPicker(!showEmojiPicker);
   }
@@ -117,7 +125,7 @@ function MessageBar() {
     }
   }
   return (
-    <div className="bg-panel-header-background h-20 px-4 flex items-center gap-6 relative">
+    <div onKeyDown={handleKeyDown} className="bg-panel-header-background h-20 px-4 flex items-center gap-6 relative">
       {
         !showAudioRecorder && (
       <>

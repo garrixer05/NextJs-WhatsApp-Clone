@@ -23,7 +23,7 @@ function CapturePhoto({hide, setImage}) {
   },[])
 
   const capturePhoto = () => {
-    const cavas = document.createElement("canvas");
+    const canvas = document.createElement("canvas");
     canvas.getContext("2d").drawImage(videoRef.current, 0,0,300,150);
     setImage(canvas.toDataUrl("image.jpeg"))
     hide(false);
