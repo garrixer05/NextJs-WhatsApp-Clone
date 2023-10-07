@@ -8,7 +8,7 @@ function IncomingVideoCall() {
   const acceptCall = ()=>{
     dispatch({
       type:reducerCases.SET_VIDEO_CALL,
-      videoCall:{incomingVideoCall,type:"in-coming"}
+      videoCall:{...incomingVideoCall,type:"in-coming"}
     });
     socket.current.emit("accept-incoming-call",{id:incomingVideoCall.id})
     dispatch({

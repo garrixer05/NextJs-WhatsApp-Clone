@@ -9,12 +9,12 @@ import CapturePhoto from "./CapturePhoto";
 
 function Avatar({type, image, setImage}) {
   const [hover, setHover] = useState(false)
-  const [isContextMenuVisible, setIsContextMenuVisible] = useState(false)
   const [grabPhoto, setGrabPhoto] = useState(false);
+  const [isContextMenuVisible, setIsContextMenuVisible] = useState(false)
   const [contextMenuCoordinates, setContextMenuCoordinates] = useState({
     x:0,
     y:0
-  })
+  });
   const [showPhotoLibrary, setShowPhotoLibrary] = useState(false)
   const [showCapturePhoto, setShowCapturePhoto] = useState(false);
   const showContextMenu = (e)=>{
