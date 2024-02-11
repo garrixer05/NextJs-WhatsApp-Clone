@@ -1,16 +1,14 @@
-import {initializeApp} from 'firebase/app'
-import {getAnalytics} from 'firebase/analytics'
-import {getAuth} from 'firebase/auth'
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDvBDiCepmShJr-_0Ai-pxTeSkZA6xJ8CU",
-    authDomain: "whatsapp-clone-53cea.firebaseapp.com",
-    projectId: "whatsapp-clone-53cea",
-    storageBucket: "whatsapp-clone-53cea.appspot.com",
-    messagingSenderId: "256839272727",
-    appId: "1:256839272727:web:e41170b18da478de0d0f52",
-    measurementId: "G-QLSVVCMNH2"
-};
-  
-const app = initializeApp(firebaseConfig)
-export const firebaseAuth = getAuth(app); 
+const apiKey = process.env.REACT_APP_API_KEY;
+const authDomain = process.env.REACT_APP_AUTH_DOMAIN;
+const projectId = process.env.REACT_APP_PROJECT_ID;
+const storageBucket = process.env.REACT_APP_STORAGE_BUCKET;
+const messagingSenderId = process.env.REACT_APP_MESSAGING_SENDER_ID;
+const appId = process.env.REACT_APP_APP_ID;
+const measurementId = process.env.REACT_APP_MEASUREMENT_ID;
+
+const app = initializeApp(firebaseConfig);
+export const firebaseAuth = getAuth(app);
